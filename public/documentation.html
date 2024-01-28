@@ -5,15 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 
 <body>
     <h1>Movies Application</h1>
     <p>
-        A REST API for the "myFlix" application that interacts with a database, 
+        A REST API for the "myFlix" application that interacts with a database,
         providing users with access to information about different movies, directors, and genres.
         Users will be able to sing up, update their personal information, and create a list of their favorite movies.
     </p>
+
+    <table id="endpoints-table">
+        <thead>
+            <tr>
+                <th>Business Logic</th>
+                <th>URL</th>
+                <th>HTTP Method</th>
+                <th>Request body data format</th>
+                <th>Response body data format</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Get list of all movies</td>
+                <td>/movies</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about all the movies</td>
+            </tr>
+
+            <tr>
+                <td>Get data of single movie by title</td>
+                <td>/movies/[Movie Title]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>
+                    A JSON object holding data about a single movie, containing title,description,genre,and director.
+                    Example:<br>
+                    {<br>
+                    <p style="margin-left:25px;">
+                        "Title": "The Shawshank Redemption",<br>
+                        "Description":"Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",<br>
+                        "Genre": {<br>
+                            "Name":"Drama", <br>
+                            "Description":"In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."<br>
+                        },<br>
+                        "Director": {<br>
+                            "Name": "Frank Darabont",<br>
+                            "Birth": "1959"<br>
+                        }
+                    </p>
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td>Get data of genre by name/title</td>
+                <td>/movies/genres/[Genre Name]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object holding data about the specified genre </td>
+            </tr>
+
+            <tr>
+                <td>Get data about a director by name</td>
+                <td>/movies/directors/[Director Name]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>
+                    A JSON object containing data about the requested director
+                </td>
+            </tr>
+            <tr>
+                <td>Register a user</td>
+                <td>/users</td>
+                <td>POST</td>
+                <td>
+                    A JSON object holding data about the user being added.
+                    Example:<br>
+                    {<br>
+                    <p style="margin-left:25px;">
+                        "Name": "Lucas"<br>
+                        "Favorites":{}
+                    </p>
+                    }
+                </td>
+                <td>
+                    A JSON object holding data about the newly added user with an assigned ID.
+                    Example:<br>
+                    {
+                        <p style="margin-left:25px;">
+                            "Name":"Lucas"<br>
+                            "Favorites":{}<br>
+                            "ID":"884e676f-aa90-4f21-85c4-498650ef4dec"
+                        </p>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Update user info(username)</td>
+                <td>/users/[User ID]</td>
+                <td>PUT</td>
+                <td></td>
+                <td>A JSON object containing user's data with updated information</td>
+            </tr>
+            <tr>
+                <td>Add a movie to a user's list of favorites</td>
+                <td>/users/[User ID]/[Movie Title]</td>
+                <td>POST</td>
+                <td>None</td>
+                <td>A text message indicating whether a movie was successfully added to favorites</td>
+            </tr>
+            <tr>
+                <td>Remove a movie from a user's list of favorites</td>
+                <td>/users/[User ID]/[Movie Title]</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A text message indicating whether a movie was successfully removed from favorites</td>
+            </tr>
+            <tr>
+                <td>Deregister a user(remove user)</td>
+                <td>/users/[User ID]</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A text message indicating whether the user was successfully removed</td>
+            </tr>
+        </tbody>
+    </table>
+
 </body>
 
 </html>
