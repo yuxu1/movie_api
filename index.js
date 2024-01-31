@@ -3,6 +3,11 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+//allow Mongoose to connect to moviesDB database (MongoDB)
+mongoose.connect('mongodb://localhost:27017/moviesDB',{useNewUrlParser: true, useUnifiedTopology: true});
 
 //encapsulate express functionality in 'app'
 const app = express();
@@ -12,7 +17,7 @@ app.use(morgan('common'));
 //invoke body-parser to read body of requests
 app.use(bodyParser.json());
 
-//in-memory data of movies
+/*in-memory database
 let movies = [
   {
     Title: 'The Shawshank Redemption',
@@ -157,7 +162,7 @@ let users = [
     Name:'Vincent',
     Favorites:['Saltburn']
   }
-];
+];*/
 
 //[READ] Get list of all movies - return JSON object of movies list
 app.get('/movies/', (req, res) => {
