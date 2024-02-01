@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Documentation</title>
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 
 <body>
@@ -45,15 +45,17 @@
                     Example:<br>
                     {<br>
                     <p style="margin-left:25px;">
-                        "Title": "The Shawshank Redemption",<br>
-                        "Description":"Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",<br>
+                        "Title": "It",<br>
+                        "Description":"In the Town of Derry, the local kids are disappearing one by one. In a place known as "The Barrens", a group of seven kids are united by their horrifying and strange encounters with an evil clown and their determination to kill It.",<br>
                         "Genre": {<br>
-                            "Name":"Drama", <br>
-                            "Description":"In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."<br>
+                            "Name":"Horror", <br>
+                            "Description":"Horror is a film genre that seeks to elicit fear or disgust in its audience for entertainment purposes.Horror films often explore dark subject matter and may deal with transgressive topics or themes. Broad elements include monsters, apocalyptic events, and religious or folk beliefs."<br>
                         },<br>
                         "Director": {<br>
-                            "Name": "Frank Darabont",<br>
-                            "Birth": "1959"<br>
+                            "Name": "Andy Muschietti",<br>
+                            "Bio": "Andrés Walter Muschietti (born 26 August 1973) is an Argentine film director and screenwriter who achieved wide recognition with the 2013 film Mama. He gained further recognition for directing both films in the It film series, the 2017 film adaptation of the Stephen King novel and its sequel, It Chapter Two. In 2023, he directed the DC Extended Universe film The Flash.",<br>
+                            "Birthyear": "1959"<br>
+                            "Deathyear":""<br>
                         }
                     </p>
                     }
@@ -61,7 +63,7 @@
             </tr>
 
             <tr>
-                <td>Get data of genre by name/title</td>
+                <td>Get data of genre by name</td>
                 <td>/movies/genres/[Genre Name]</td>
                 <td>GET</td>
                 <td>None</td>
@@ -86,8 +88,10 @@
                     Example:<br>
                     {<br>
                     <p style="margin-left:25px;">
-                        "Name": "Lucas"<br>
-                        "Favorites":{}
+                        "Username": "Lucas",<br>
+                        "Password": "password123", <br>
+                        "Email": "lucasexample@gmail.com", <br>
+                        "Birthday": "1995-01-01"
                     </p>
                     }
                 </td>
@@ -96,37 +100,46 @@
                     Example:<br>
                     {
                         <p style="margin-left:25px;">
-                            "Name":"Lucas"<br>
-                            "Favorites":{}<br>
+                            "Username":"Lucas",<br>
+                            "Password": "password123", <br>
+                            "Email": "lucasexample@gmail.com", <br>
+                            "Birthday": "1995-01-01", <br>
                             "ID":"884e676f-aa90-4f21-85c4-498650ef4dec"
                         </p>
                     }
                 </td>
             </tr>
             <tr>
-                <td>Update user info(username)</td>
+                <td>Update user info(by User ID)</td>
                 <td>/users/[User ID]</td>
                 <td>PUT</td>
-                <td></td>
-                <td>A JSON object containing user's data with updated information</td>
+                <td>{"Email": "newemail@email.com"}</td>
+                <td>A JSON object containing the user's data with the updated information</td>
+            </tr>
+            <tr>
+                <td>Update user info(by username)</td>
+                <td>/users/usernames/[User Name]</td>
+                <td>PUT</td>
+                <td>{"Email": "newemail@email.com"}</td>
+                <td>A JSON object containing the user's data with the updated information</td>
             </tr>
             <tr>
                 <td>Add a movie to a user's list of favorites</td>
-                <td>/users/[User ID]/[Movie Title]</td>
+                <td>/users/[Username]/movies/[Movie ID]</td>
                 <td>POST</td>
                 <td>None</td>
-                <td>A text message indicating whether a movie was successfully added to favorites</td>
+                <td>A text message indicating whether a movie was successfully added to user's favorites</td>
             </tr>
             <tr>
                 <td>Remove a movie from a user's list of favorites</td>
-                <td>/users/[User ID]/[Movie Title]</td>
+                <td>/users/[Username]/movies/[Movie ID]</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A text message indicating whether a movie was successfully removed from favorites</td>
+                <td>A text message indicating whether a movie was successfully removed from user's favorites</td>
             </tr>
             <tr>
                 <td>Deregister a user(remove user)</td>
-                <td>/users/[User ID]</td>
+                <td>/users/[User Name]</td>
                 <td>DELETE</td>
                 <td>None</td>
                 <td>A text message indicating whether the user was successfully removed</td>
