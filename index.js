@@ -116,15 +116,32 @@ app.post('/users', async (req, res) => {
     });
 });
 
+//[UPDATE]Allow user to update user info, by userID
+app.put('/users/:UserID', async (req, res) => {
+  await Users.findOneAndUpdate(
+    { _id: req.params.UserID },
+    {
+      $set: {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday,
+      },
+    },
+    //ensures the updated user document is returned
+    { new: true }
+  )
+    .then((updatedUser) => {
+      res.status(200).json(updatedUser);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
 //[UPDATE]Allow user to update user info, by username
-/* We'll expect JSON in this format
-{
-  Username: String, (required)
-  Password: String, (required)
-  Email: String, (required)
-  Birthday: Date
-}*/
-app.put('/users/:Username', async (req, res) => {
+app.put('/users/usernames/:Username', async (req, res) => {
   await Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
@@ -158,7 +175,11 @@ app.post('/users/:Username/movies/:MovieID', async (req, res) => {
     { new: true }
   )
     .then((updatedUser) => {
-      res.status(200).send(`Successfully added to user ${updatedUser.Username}\'s favorites`);
+      res
+        .status(200)
+        .send(
+          `Successfully added to user ${updatedUser.Username}\'s favorites`
+        );
     })
     .catch((err) => {
       console.error(err);
@@ -176,7 +197,11 @@ app.delete('/users/:Username/movies/:MovieID', async (req, res) => {
     { new: true }
   )
     .then((updatedUser) => {
-      res.status(200).send(`Successfully removed from user ${updatedUser.Username}'s favorites`);
+      res
+        .status(200)
+        .send(
+          `Successfully removed from user ${updatedUser.Username}'s favorites`
+        );
     })
     .catch((err) => {
       console.error(err);
