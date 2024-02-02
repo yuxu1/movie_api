@@ -96,16 +96,20 @@ We'll expect JSON in this format
   Birthday: Date
 }*/
 app.post('/users', async (req, res) => {
+  //hash the password inputted by user in req body
+  let hashedPassword = Users.hashPassword(req.body.Password);
   await Users.findOne({ Username: req.body.Username })
     .then((user) => {
       //check if returned user by Username already exists
       if (user) {
+        //if user is found, send response that user already exists
         return res.status(400).send(req.body.Username + ' already exists');
       } else {
         //create user in database w/ req.body values if user doesn't exist yet
         Users.create({
           Username: req.body.Username,
-          Password: req.body.Password,
+          //stores hashed version of password in database
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday,
         })

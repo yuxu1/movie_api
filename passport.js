@@ -17,6 +17,7 @@ passport.use(
         //use Mongoose to check database for user with that given username
         async (username, password, callback) => {
             console.log(`${username} ${password}`);
+            //checks database for inputted username
             await Users.findOne ({Username: username})
             .then((user) => {
                 //if username cannot be found, pass error message to callback
@@ -25,6 +26,11 @@ passport.use(
                     return callback (null, false, {
                         message: 'Incorrect username or password.',
                     });
+                }
+                //validate a password the user enters
+                if (!user.validatePassword(password)) {
+                    console.log('incorrect password');
+                    return callback(null, false, {message: 'Incorrect password.'});
                 }
                 console.log ('finished');
                 return callback (null, user);
