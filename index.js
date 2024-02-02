@@ -11,7 +11,14 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 //allow Mongoose to connect to moviesDB database (MongoDB)
-mongoose.connect('mongodb://localhost:27017/moviesDB', {
+/*mongoose.connect('mongodb://localhost:27017/moviesDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});*/
+
+//allow Mongoose to connect to online database
+//access environment variable for connection URI to hide password and database name
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
