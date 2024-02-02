@@ -324,8 +324,11 @@ app.get('/', (req, res) => {
 //route all requests for static files to corresponding files in 'public'
 app.use(express.static('public'));
 
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080.');
+/*look for pre-configured port number in the environment variable,
+if nothing found, set port to 8080*/
+const port = process.env.PORT || 8080;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port' + port);
 });
 
 //error-handling; log errors to terminal
