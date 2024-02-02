@@ -24,6 +24,9 @@ app.use(morgan('common'));
 //invoke body-parser to read body of requests
 app.use(bodyParser.json());
 
+const cors = require('cors');
+app.use(cors());
+
 //import auth.js file, ensuring Express is available in auth.js file
 let auth = require('./auth')(app);
 

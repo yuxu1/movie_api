@@ -1,5 +1,6 @@
-//import mongoose package
+//import packages
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //define schema for movies collection
 let movieSchema = mongoose.Schema({
@@ -27,6 +28,16 @@ let userSchema = mongoose.Schema({
     Birthday: Date,
     FavoriteMovies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
+
+//hashes user-submitted passwords
+userSchema.statics.hashPassword = (password) => {
+    return bcrypt.hashSync(password, 10);
+};
+
+//compares submitted hashed passwords with hashed passwords stored in database
+userSchema.methods.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.Password);
+};
 
 //create models that uses the above defined schemas
 //Movie --> db.movies collection
