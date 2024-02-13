@@ -16,8 +16,8 @@ let movieSchema = mongoose.Schema({
         Name:String,
         Description:String
     },
-    ImageURL:String,
-    Featured:Boolean
+    ImageURL:{type: String},
+    Featured:{type: Boolean}
 });
 
 //define schema for users collection
