@@ -242,16 +242,21 @@ app.put(
       return res.status(422).json({ errors: errors.array() });
     }
 
-    //hash user inputted password before storing in database
-    let hashedPassword = Users.hashPassword(req.body.Password);
+    //retrieve current user data of authenticated user
+    let currentData = Users.findOne({Username: req.params.Username});
+
+    //convert newly inputted password (if exists) into hashed version, or take current hashedpassword in database
+    let hashedPassword = req.body.Password ? Users.hashPassword(req.body.Password) : currentData.Password;
+    
     await Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
+        //update user database with new data if exists; else keep current data
         $set: {
-          Username: req.body.Username,
+          Username: req.body.Username || currentData.Username,
           Password: hashedPassword,
-          Email: req.body.Email,
-          Birthday: req.body.Birthday,
+          Email: req.body.Email || currentData.Email,
+          Birthday: req.body.Birthday || currentData.Birthday,
         },
       },
       //ensures the updated user document is returned
