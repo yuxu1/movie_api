@@ -288,9 +288,10 @@ app.post(
       .then((updatedUser) => {
         res
           .status(200)
-          .send(
+          .json(updatedUser);
+          /*.send(
             `Successfully added to user ${updatedUser.Username}\'s favorites`
-          );
+          );*/
       })
       .catch((err) => {
         console.error(err);
@@ -319,9 +320,10 @@ app.delete(
       .then((updatedUser) => {
         res
           .status(200)
-          .send(
+          .json(updatedUser);
+         /* .send(
             `Successfully removed from user ${updatedUser.Username}'s favorites`
-          );
+          );*/
       })
       .catch((err) => {
         console.error(err);
