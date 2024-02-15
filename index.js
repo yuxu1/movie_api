@@ -111,6 +111,39 @@ app.get(
   }
 );
 
+//endpoint to retrieve all users
+app.get(
+  '/users',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    Users.find()
+      .then((users) => {
+        res.status(201).json(users);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
+
+//endpoint to retrieve a single user by username
+app.get(
+  '/users/:Username',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    //find the first user whose "Username" matches the one in the :Username req parameters
+    Users.findOne({ Username: req.params.Username })
+      .then((user) => {
+        res.status(201).json(user);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
+
 /*[CREATE] Allow user to register (POST user to users array)
 no authentication - allow anyone to register
 We'll expect JSON in this format
