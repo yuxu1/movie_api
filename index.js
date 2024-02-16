@@ -225,9 +225,9 @@ app.put(
     check(
       'Username',
       'Username contains non alphanumeric characters - not allowed.'
-    ).isAlphanumeric(),
+    ).isAlphanumeric()
    // check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
+   // check('Email', 'Email does not appear to be valid').isEmail(),
   ],
   async (req, res) => {
     //condition to check if user is requesting access to their own user data
