@@ -32,7 +32,19 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 const cors = require('cors');
-app.use(cors());
+let allowedOrigins = ['http://localhost:1234/','http://localhost:8080/','http://localhost:58290/','http://localhost:50140/','https://my-flix-project-b74d36752ec6.herokuapp.com/','https://yx-projects-myflix.netlify.app/'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback (null,true);
+    //if a specific origin isn't found on list of allowed origins,display error message
+    if (allowedOrigins.indexOf(origin) === -1) {
+      let message = 'The CORS policy for this applicatioin doesn\'t allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback (null, true);
+  }
+}));
 
 //import auth.js file, ensuring Express is available in auth.js file
 let auth = require('./auth')(app);
