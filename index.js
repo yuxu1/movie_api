@@ -32,7 +32,7 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:1234/','http://localhost:8080/','http://localhost:58290/','http://localhost:50140/','https://my-flix-project-b74d36752ec6.herokuapp.com/','https://yx-projects-myflix.netlify.app/'];
+let allowedOrigins = ['http://localhost:1234','http://localhost:8080','http://localhost:58290','https://yx-projects-myflix.netlify.app'];
 
 app.use(cors({
   origin: (origin, callback) => {
