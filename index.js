@@ -59,6 +59,8 @@ const { check, validationResult } = require('express-validator');
 
 /**
  * Handles GET requests for a list of all movies
+ * @function
+ * @name getAllMovies
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} error message if an error occurs in retrieving the movies from database
@@ -81,6 +83,8 @@ app.get(
 
 /**
  * Handles GET requests for a single movie by title
+ * @function
+ * @name getOneMovie
  * @param {Object} req - Express request objeect
  *  @param {string} req.params.Title - title of movie being requested
  * @param {Object} res - Express response object 
@@ -104,6 +108,8 @@ app.get(
 
 /**
  * Handles GET requests for a specific genre
+ * @function
+ * @getGenre
  * @param {Object} req - Express request object
  *  @param {string} req.params.genreName - name of genre being requested
  * @param {Object} res - Express response object
@@ -130,6 +136,8 @@ app.get(
 
 /**
  * Handles GET requests for a specific director
+ * @function
+ * @name getDirector
  * @param {Object} req - Express request object
  *  @param {string} req.params.directorName - name of director being requested
  * @param {Object} res - Express response object
@@ -156,6 +164,8 @@ app.get(
 
 /**
  * Handles GET requests for all users
+ * @function
+ * @name getAllUsers
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} - error message if an error occurs while retrieving users from database
@@ -178,6 +188,8 @@ app.get(
 
 /**
  * Handles GET requests for a single user by username
+ * @function
+ * @name getOneUser
  * @param {Object} req - Express request object
  *  @param req.params.Username (username of the user being requested)
  * @param {Obect} res - Express response object
@@ -202,6 +214,8 @@ app.get(
 
 /**
  * Handles POST requests to create a new user (user registration)
+ * @function
+ * @name createUser
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} - error message if an error occurs when attempting to create the user
@@ -276,6 +290,8 @@ app.post(
 
 /**
  * Handles PUT requests to update user information by username
+ * @function
+ * @name updateUser
  * Checks for changes to the user's username, password, email, and birthday (if included in req body)
  * @param {Object} req - Express request object
  *  @param {string} req.params.Username - username of the user being updated
@@ -344,6 +360,8 @@ app.put(
 
 /**
  * Handles POST requests to add a movie to a user's favorites list
+ * @function
+ * @name addFavoriteMovie
  * @param {Object} req - Express request object
  *  @param {Object} req.user - JSON object containing the user obtained from JWT authentication
  *  @param {string} req.params.Username (username of the user being requested)
@@ -385,6 +403,8 @@ app.post(
 );
 /**
  * Handles DELETE requests to remove a movie from a user's favorites list
+ * @function
+ * @name removeFavoriteMovie
  * @param {Object} req - Express request object
  *  @param {Object} req.user - JSON object containing the user obtained from JWT authentication
  *  @param {string} req.params.Username (username of the user being requested)
@@ -426,6 +446,8 @@ app.delete(
 
 /**
  * Handles DELETE requests to delete a user (deregister)
+ * @function
+ * @name deleteUser
  * @param {Object} req - Express request object
  *  @param {Object} req.user - JSON object containing the user obtained from JWT authentication
  *  @param {string} req.params.Username (username of the user being requested)
@@ -460,6 +482,8 @@ app.delete(
 
 /**
  * Handles GET requests for the index page
+ * @function
+ * @name getIndexPage
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @returns {string} - returns welcome message
