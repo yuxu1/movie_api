@@ -59,7 +59,6 @@ const { check, validationResult } = require('express-validator');
 
 /**
  * Handles GET requests for a list of all movies
- * @async
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} error message if an error occurs in retrieving the movies from database
@@ -82,7 +81,6 @@ app.get(
 
 /**
  * Handles GET requests for a single movie by title
- * @async
  * @param {Object} req - Express request objeect
  *  @param {string} req.params.Title - title of movie being requested
  * @param {Object} res - Express response object 
@@ -106,7 +104,6 @@ app.get(
 
 /**
  * Handles GET requests for a specific genre
- * @async
  * @param {Object} req - Express request object
  *  @param {string} req.params.genreName - name of genre being requested
  * @param {Object} res - Express response object
@@ -133,7 +130,6 @@ app.get(
 
 /**
  * Handles GET requests for a specific director
- * @async
  * @param {Object} req - Express request object
  *  @param {string} req.params.directorName - name of director being requested
  * @param {Object} res - Express response object
@@ -160,7 +156,6 @@ app.get(
 
 /**
  * Handles GET requests for all users
- * @async
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} - error message if an error occurs while retrieving users from database
@@ -183,7 +178,6 @@ app.get(
 
 /**
  * Handles GET requests for a single user by username
- * @async
  * @param {Object} req - Express request object
  *  @param req.params.Username (username of the user being requested)
  * @param {Obect} res - Express response object
@@ -208,7 +202,6 @@ app.get(
 
 /**
  * Handles POST requests to create a new user (user registration)
- * @async
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  * @throws {Error} - error message if an error occurs when attempting to create the user
@@ -284,7 +277,6 @@ app.post(
 /**
  * Handles PUT requests to update user information by username
  * Checks for changes to the user's username, password, email, and birthday (if included in req body)
- * @async
  * @param {Object} req - Express request object
  *  @param {string} req.params.Username - username of the user being updated
  * @param {Object} res - Express response object
