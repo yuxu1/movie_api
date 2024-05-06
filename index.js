@@ -290,9 +290,9 @@ app.post(
 
 /**
  * Handles PUT requests to update user information by username
+ * Checks for changes to the user's username, password, email, and birthday (if included in req body)
  * @function
  * @name updateUser
- * Checks for changes to the user's username, password, email, and birthday (if included in req body)
  * @param {Object} req - Express request object
  *  @param {string} req.params.Username - username of the user being updated
  * @param {Object} res - Express response object
