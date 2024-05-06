@@ -67,7 +67,15 @@
                 <td>/movies/genres/[Genre Name]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about the specified genre </td>
+                <td>
+                    A JSON object holding data about the specified genre. Example: <br>
+                    {<br>
+                        <p style="margin-left:25px;">
+                            "Name":"Horror",<br>
+                            "Description":"Horror is a film genre that seeks to elicit fear or disgust in its audience for entertainment purposes.Horror films often explore dark subject matter and may deal with transgressive topics or themes. Broad elements include monsters, apocalyptic events, and religious or folk beliefs."<br>
+                        </p>
+                    }
+                </td>
             </tr>
 
             <tr>
@@ -76,7 +84,15 @@
                 <td>GET</td>
                 <td>None</td>
                 <td>
-                    A JSON object containing data about the requested director
+                    A JSON object containing data about the requested director. Example:<br>
+                    {<br>
+                        <p style="margin-left:25px;">
+                            "Name": "Andy Muschietti",<br>
+                            "Bio": "Andrés Walter Muschietti (born 26 August 1973) is an Argentine film director and screenwriter who achieved wide recognition with the 2013 film Mama. He gained further recognition for directing both films in the It film series, the 2017 film adaptation of the Stephen King novel and its sequel, It Chapter Two. In 2023, he directed the DC Extended Universe film The Flash.",<br>
+                            "Birthyear": "1959"<br>
+                            "Deathyear":""<br>
+                        </p>
+                    }
                 </td>
             </tr>
             <tr>
@@ -104,6 +120,7 @@
                             "Password": "password123", <br>
                             "Email": "lucasexample@gmail.com", <br>
                             "Birthday": "1995-01-01", <br>
+                            "FavoriteMovies": [],<br>
                             "ID":"884e676f-aa90-4f21-85c4-498650ef4dec"
                         </p>
                     }
@@ -121,14 +138,14 @@
                 <td>/users/[Username]/movies/[Movie ID]</td>
                 <td>POST</td>
                 <td>None</td>
-                <td>A text message indicating whether a movie was successfully added to user's favorites</td>
+                <td>A JSON object containing the user's data with the updated information</td>
             </tr>
             <tr>
                 <td>Remove a movie from a user's list of favorites</td>
                 <td>/users/[Username]/movies/[Movie ID]</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A text message indicating whether a movie was successfully removed from user's favorites</td>
+                <td>A JSON object containing the user's data with the updated information</td>
             </tr>
             <tr>
                 <td>Deregister a user(remove user)</td>
