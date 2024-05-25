@@ -1,4 +1,3 @@
-
 # Movie API Documentation
 
 ## Description
